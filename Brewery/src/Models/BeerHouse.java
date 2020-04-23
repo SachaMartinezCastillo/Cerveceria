@@ -14,19 +14,14 @@ public class BeerHouse
 
     public  void ToggleAvailable()
     {
-        if (Available == true)
-        {
-            Available = false;
-        }
-        else
-        {
-            Available = true;
-        }
+        boolean aux;
+        aux = (Available) ? false : true;
+        Available = aux;
     }
 
     public synchronized void AddBeer(int Cant)
     {
-        while (Available == true)
+        while (Available )
         {
             try {
             wait();
@@ -64,7 +59,7 @@ public class BeerHouse
         if (Stock <= MinStock)
         {
             this.ToggleAvailable();
-         //   notify();
+            notify();
         }
     }
 
